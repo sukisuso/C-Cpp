@@ -1,0 +1,109 @@
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>	
+
+void cMatrix(int** Matriz, int tam);
+void cMatrixTrSup(int** Matriz,int tam );
+void cMatrixTrInf(int** Matriz,int tam);
+void imprimematriz (int** Matriz,int tam);
+
+
+/*
+	 PROBLEMA: El programa calcularÃ¡ la multiplicaciÃ³n de una matriz cuadrada por una matriz triangular: 
+	 Y=X*T, donde T podrÃ¡ ser una matriz triangular superior o inferior.
+*/
+
+int main(int argc, char *argv[])
+{
+	int a,b,c;
+	int tam = atoi(argv[1]);
+	
+	/*Declaracion de las Matrices*/
+	
+	int **matrizC;					//Matriz cuadrada
+	int i;
+	matrizC = (int**) malloc(tam*sizeof(int));
+	for(i=0;i < tam; i++) {
+	      matrizC[i] = (int**)malloc(tam*sizeof(int));
+	}
+	
+	int **matrizT;					//Matriz Triangular
+	matrizT = (int**) malloc(tam*sizeof(int));
+	for(i=0;i < tam; i++) {
+	      matrizT[i] = (int**)malloc(tam*sizeof(int));
+	}
+	
+	int **matrizR;					//Matriz Resultado
+	matrizR = (int**) malloc(tam*sizeof(int));
+	for(i=0;i < tam; i++) {
+	      matrizR[i] = (int**)malloc(tam*sizeof(int));
+	}
+	
+	//Inicializacion de las Matrices.
+	cMatrix(matrizC, tam);
+	cMatrixTrSup(matrizT, tam);					//Dependiendo si queremos inicializar la
+	//cMatrixTrInf(matrizT, tam);					//matriz triangular Superior o Inferior.
+
+	/*Multiplicacion de Matrices*/ //Suponemos que la matriz cuadrada esta Traspuesta.
+	 
+	for(a=0; a < tam ; a++ ) { 
+	      for ( b=0; b < tam ; b++ ) {
+		    for ( c=0; c < tam ; c++ ) {
+			  if(c <= a)   //Este caso es para Superior en caso de inferior canviar orden (a <= c)
+			      matrizR[a][b] += matrizT[a][c] * matrizC[b][c];
+		    }
+
+	      }
+	}
+	
+	imprimematriz(matrizR, tam);
+
+	return 0;
+}
+
+void cMatrix(int **Matriz, int tam){
+	int i, j;
+	for (i = 0; i < tam; ++i)
+		for (j = 0; j < tam; ++j)
+			Matriz[i][j] = (double)rand() ;			
+}
+
+
+void cMatrixTrSup(int **Matriz, int tam){
+	int i, j;
+	for (i = 0; i < tam; ++i)
+		for (j = 0; j < tam; ++j)
+			if(j <= i)	
+				Matriz[i][j] = (double)rand() ;			
+			else
+				Matriz[i][j] = 0;
+
+}	
+
+void cMatrixTrInf(int **Matriz, int tam){
+	int i, j;
+	for (i = 0; i < tam; ++i)
+		for (j = 0; j < tam; ++j)
+			if(i <= j)	
+				Matriz[i][j] = (double)rand() ;			
+			else
+				Matriz[i][j] = 0;
+
+}	
+
+
+void imprimematriz (int **Matriz, int tam) {
+
+  int i , j ;
+  
+  for ( i = 0 ; i < tam ; ++i ) { 
+      for ( j = 0 ; j < tam ; ++j ) { 
+	  printf( " %d " , Matriz [ i ] [ j ] ) ;
+      }
+      printf( "\n" ) ;
+  }
+}
+
