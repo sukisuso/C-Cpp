@@ -1,7 +1,7 @@
 /**
 *
 *    @file previo.cpp
-*    @Author Jesus Juan Aguilar y Humberto Huapaya Leon.
+*    @Author Jesus Juan Aguilar
 *    @date  31/10/2014.
 *    @version 1.0
 *    @brief: Practica 3 PROA.
