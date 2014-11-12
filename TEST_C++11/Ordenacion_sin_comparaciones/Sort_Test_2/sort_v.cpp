@@ -1,7 +1,7 @@
 /**
 *
 *    @file sort_v.cpp
-*    @Author Jesus Juan Aguilar y Humberto Huapaya Leon.
+*    @Author Jesus Juan Aguilar
 *    @date  21/10/2014.
 *    @version 1.0
 *    @brief: Practica 2 PROA.
